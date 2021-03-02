@@ -5,6 +5,7 @@ FROM node:lts-buster
 RUN echo cache-busting-6
 
 RUN apt-get update &&\
+  apt-get install -y python3 &&\
   apt-get install -y python3-pip &&\
   rm -rf /var/lib/apt/lists/* &&\
   pip3 install --no-cache-dir -U jupyterlab
@@ -27,7 +28,7 @@ RUN mkdir ~/.npm-global &&\
   npm config set prefix '~/.npm-global' &&\
   npm install -g tslab &&\
   tslab install
-RUN git clone --depth 1 https://github.com/yunabe/tslab-examples.git
+RUN git clone --depth 1 https://github.com/noamsgl/tslab-examples
 WORKDIR ${HOME}/tslab-examples
 RUN yarn
 
